@@ -1,5 +1,8 @@
 import os
+import sys
+import logging
 from glob import glob
+
 
 import cv2
 import rosbag
@@ -7,11 +10,22 @@ from cv_bridge import CvBridge
 
 
 def __get_bags_name(bag_folder, with_extension=False):
-    filenames = next(os.walk(bag_folder))[2]
-    if with_extension :
-        return [f for f in filenames if len(f) > 0]
+    if os.path.isdir(bag_folder):
+        filenames = next(os.walk(bag_folder))[2]
+        if with_extension :
+            bag_names = [f for f in filenames if len(f) > 0]
+        else:
+            bag_names = [f.split(".")[0] for f in filenames if len(f.split(".")[0]) > 0]
+
+        if len(bag_names) < 1:
+            logging.warning("Exiting...bag folder contains no bag to extract")
+            sys.exit(os.EX_OSERR)
+
+        return bag_names
     else:
-        return [f.split(".")[0] for f in filenames if len(f.split(".")[0]) > 0]
+        logging.warning("Exiting...provided bag folder does not exist")
+        sys.exit(os.EX_OSERR)
+
 
 
 def __create_output_dirs(bag_folder, output_folder):
