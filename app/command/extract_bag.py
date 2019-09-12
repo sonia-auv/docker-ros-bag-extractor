@@ -22,9 +22,9 @@ def __get_bags_name(bag_folder, with_extension=False):
             sys.exit(os.EX_OSERR)
 
         return bag_names
-    else:
-        logging.warning("Exiting...provided bag folder does not exist")
-        sys.exit(os.EX_OSERR)
+
+    logging.warning("Exiting...provided bag folder does not exist")
+    sys.exit(os.EX_OSERR)
 
 
 
