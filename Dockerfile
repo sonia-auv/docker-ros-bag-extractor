@@ -22,6 +22,6 @@ ADD app ${SONIA_HOME}/
 RUN chown -R ${SONIA_USER}: ${SONIA_HOME}
 RUN mkdir -p ${BAGS_FOLDER} ${IMAGES_FOLDER}
 # *********************************************
-
+# *********************************************
 USER ${SONIA_USER}
 WORKDIR ${SONIA_HOME}
