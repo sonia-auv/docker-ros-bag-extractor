@@ -19,7 +19,6 @@ deploy:
     on:
       branch: master
   - provider: script
-
     script: docker tag "$IMAGE_NAME" "${IMAGE_NAME}:dev" && docker push "${IMAGE_NAME}:latest" && docker push "${IMAGE_NAME}:dev"
     on:
       branch: dev
