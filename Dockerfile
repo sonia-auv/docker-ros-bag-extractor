@@ -12,7 +12,8 @@ ENV TERM linux
 ENV SONIA_USER=sonia
 ENV SONIA_HOME=/home/sonia
 ENV BAGS_FOLDER=${SONIA_HOME}/bags
-ENV IMAGES_FOLDER=${SONIA_HOME}/images
+ENV OUTPUT_FOLDER=${SONIA_HOME}/output
+ENV IMAGES_FOLDER=${OUTPUT_FOLDER}/images
 # *********************************************
 RUN useradd -ms /bin/bash -d ${SONIA_HOME} ${SONIA_USER}
 
@@ -20,7 +21,7 @@ RUN useradd -ms /bin/bash -d ${SONIA_HOME} ${SONIA_USER}
 # Copy required scripts and creating folders
 ADD app ${SONIA_HOME}/
 RUN chown -R ${SONIA_USER}: ${SONIA_HOME}
-RUN mkdir -p ${BAGS_FOLDER} ${IMAGES_FOLDER}
+RUN mkdir -p ${BAGS_FOLDER} ${OUTPUT_FOLDER} ${IMAGES_FOLDER}
 # *********************************************
 # *********************************************
 USER ${SONIA_USER}
