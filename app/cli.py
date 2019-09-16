@@ -14,8 +14,8 @@ def setup_cli():
     )
 
     parser.add_argument(
-        "-t",
-        "--type",
+        "-m",
+        "--media",
         type=str,
         choices=["image"],
         help="The type of content that will be extracted e.g : image",
@@ -32,8 +32,8 @@ def setup_cli():
     return parser
 
 
-def extract(type, topics):
-    if type == "image":
+def extract(media, topics):
+    if media == "image":
         extract_bag.to_images(BAGS_FOLDER, IMAGES_FOLDER, topics)
 
 
