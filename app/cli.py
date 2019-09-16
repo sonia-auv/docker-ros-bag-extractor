@@ -41,4 +41,4 @@ if __name__ == "__main__":
     parser = setup_cli()
     parsed_args = parser.parse_args()
 
-    extract(parsed_args.type, parsed_args.topics)
+    extract(parsed_args.media, parsed_args.topics)

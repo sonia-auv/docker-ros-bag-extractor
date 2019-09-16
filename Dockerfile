@@ -20,8 +20,8 @@ RUN useradd -ms /bin/bash -d ${SONIA_HOME} ${SONIA_USER}
 # *********************************************
 # Copy required scripts and creating folders
 ADD app ${SONIA_HOME}/
-RUN chown -R ${SONIA_USER}: ${SONIA_HOME}
 RUN mkdir -p ${BAGS_FOLDER} ${OUTPUT_FOLDER} ${IMAGES_FOLDER}
+RUN chown -R ${SONIA_USER}: ${SONIA_HOME}
 # *********************************************
 # *********************************************
 USER ${SONIA_USER}

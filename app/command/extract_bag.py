@@ -58,7 +58,7 @@ def to_images(bag_folder, output_folder, topics):
                 logging.info("Extracting images from {} on topic {}".format(bag_file, topic))
                 for topic, msg, _ in bag.read_messages(topics=[topic]):
 
-                    img_name = __generate_image_name()
+                    img_name = __generate_image_name(bag_file)
                     extraction_path = os.path.join(image_output_dir, img_name)
 
                     cv_img = bridge.compressed_imgmsg_to_cv2(
