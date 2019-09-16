@@ -15,10 +15,10 @@ before_deploy:
   - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:latest"
 deploy:
   - provider: script
+    script: docker tag "$IMAGE_NAME" "${IMAGE_NAME}:dev" && docker push "${IMAGE_NAME}:latest" && docker push "${IMAGE_NAME}:dev"
+    on:
+      branch: dev
+  - provider: script
     script: docker tag "$IMAGE_NAME" "${IMAGE_NAME}:${version}" && docker push "${IMAGE_NAME}:latest" && docker push "${IMAGE_NAME}:${version}"
     on:
       branch: master
-  - provider: script
-    script: docker tag "$IMAGE_NAME" "${IMAGE_NAME}:${version}" && docker push "${IMAGE_NAME}:latest" && docker push "${IMAGE_NAME}:dev"
-    on:
-      branch: dev
