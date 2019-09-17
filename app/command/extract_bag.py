@@ -1,6 +1,7 @@
 import os
 import sys
 import uuid
+import shutil
 from glob import glob
 
 
@@ -33,8 +34,9 @@ def __create_output_dirs(bag_folder, output_folder):
     folders = [os.path.join(output_folder, bag) for bag in bag_names]
 
     for folder in folders:
-        if not (os.path.exists(folder)):
-            os.mkdir(folder)
+        if os.path.exists(folder):
+            shutil.rmtree(folder, ignore_errors=True)
+        os.mkdir(folder)
 
 
 def __generate_image_name(bag_file):
