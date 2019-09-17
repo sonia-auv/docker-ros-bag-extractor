@@ -61,7 +61,7 @@ def to_images(bag_folder, output_folder, topics):
 
                     img_name = __generate_image_name(bag_file)
 
-                    extraction_path = os.path.join(image_output_dir, bag_file, img_name)
+                    extraction_path = os.path.join(output_dir, bag_file, img_name)
 
                     cv_img = bridge.compressed_imgmsg_to_cv2(msg, desired_encoding="passthrough")
                     cv2.imwrite(extraction_path, cv_img)
