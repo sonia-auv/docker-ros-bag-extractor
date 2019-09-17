@@ -65,10 +65,15 @@ def to_images(bag_folder, output_folder, topics):
                 for topic, msg, _ in bag.read_messages(topics=[topic]):
 
                     img_name = __generate_image_name(bag_file)
-                    bag_filename = bag_file.split(".")[0]
+                    bag_filepath = os.path.basename(bag_file)
+                    bag_filename = bag_filepath.split(".")[0]
 
                     extraction_path = os.path.join(output_folder, bag_filename, img_name)
 
                     cv_img = bridge.compressed_imgmsg_to_cv2(msg, desired_encoding="passthrough")
-                    cv2.imwrite(extraction_path, cv_img)
+
+                    img_saved = cv2.imwrite(extraction_path, cv_img)
+
+                    # TODO: Handle case where result = false
+
                     print("Extracted image {} to {}".format(img_name, extraction_path))
