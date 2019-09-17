@@ -53,6 +53,8 @@ def to_images(bag_folder, output_folder, topics):
 
     bags = glob("{}/*.bag".format(bag_folder))
 
+    bridge = CvBridge()
+
     for bag_file in bags:
         for topic in topics:
             with rosbag.Bag(bag_file, "r") as bag:
@@ -63,6 +65,6 @@ def to_images(bag_folder, output_folder, topics):
 
                     extraction_path = os.path.join(output_folder, bag_file, img_name)
 
-                    cv_img = CvBridge.compressed_imgmsg_to_cv2(msg, desired_encoding="passthrough")
+                    cv_img = bridge.compressed_imgmsg_to_cv2(msg, desired_encoding="passthrough")
                     cv2.imwrite(extraction_path, cv_img)
                     logging.info("Extracted image {} to {}".format(img_name, extraction_path))
