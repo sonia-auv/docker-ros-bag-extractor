@@ -1,12 +1,11 @@
 import os
+import shutil
 import sys
 import uuid
-import shutil
 from glob import glob
-from pathlib import Path
-
 
 import cv2
+
 import rosbag
 from cv_bridge import CvBridge
 
@@ -43,9 +42,8 @@ def __create_output_dirs(bag_folder, output_folder):
 def __generate_image_name(bag_file):
     uuid_name = str(uuid.uuid1())
 
-    # bag_filepath = bag_file.split(".")[0]
-
-    bag_names = Path(bag_file).stem
+    bag_filepath = os.path.basename(bag_file)
+    bag_filename = bag_filepath.split(".")[0]
 
     uuid_formated_name = "frame_{}_{}.jpg".format(bag_filename, uuid_name)
 
