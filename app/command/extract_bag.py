@@ -3,6 +3,7 @@ import sys
 import uuid
 import shutil
 from glob import glob
+from pathlib import Path
 
 
 import cv2
@@ -42,7 +43,9 @@ def __create_output_dirs(bag_folder, output_folder):
 def __generate_image_name(bag_file):
     uuid_name = str(uuid.uuid1())
 
-    bag_filename = bag_file.split(".")[0]
+    # bag_filepath = bag_file.split(".")[0]
+
+    bag_names = Path(bag_file).stem
 
     uuid_formated_name = "frame_{}_{}.jpg".format(bag_filename, uuid_name)
 
