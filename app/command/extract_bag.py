@@ -21,7 +21,6 @@ def __get_bags_name(bag_folder):
     if os.path.isdir(bag_folder):
         filenames = next(os.walk(bag_folder))[2]
         bag_names = [f.split(".")[0] for f in filenames if len(f.split(".")[0]) > 0]
-
         if len(bag_names) < 1:
             raise SystemExit("[ERROR]:Exiting...bag folder contains no bag to extract")
         return bag_names
@@ -37,7 +36,7 @@ def __create_output_dirs(bag_folder, output_folder):
         if os.path.exists(folder):
             shutil.rmtree(folder, ignore_errors=True)
         os.mkdir(folder)
-        print(f"[INFO]:Created folder {folder}")
+        print("[INFO]:Created folder {}".format(folder))
 
 
 def __generate_image_name(bag_file):
@@ -77,7 +76,13 @@ def to_images(bag_folder, output_folder, topics):
 
                     if not img_saved:
                         raise SystemExit(
-                            f"[ERROR]: An error occured while saving image file {extraction_path}"
+                            "[ERROR]: An error occured while saving image file {}".format(
+                                extraction_path
+                            )
                         )
 
-                    print("[INFO]:Extracted image {} to {}".format(img_name, extraction_path))
+                    print(
+                        "[INFO]:Extracted image {} to {}".format(
+                            img_filename_with_ext, extraction_path
+                        )
+                    )
